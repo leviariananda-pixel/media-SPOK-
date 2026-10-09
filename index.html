@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesmen Bahasa Indonesia — Wawancara Kelas 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:   #185FA5;
+    --blue-l: #E6F1FB;
+    --blue-d: #0C447C;
+    --green:  #3B6D11;
+    --green-l:#EAF3DE;
+    --amber:  #854F0B;
+    --amber-l:#FAEEDA;
+    --red:    #A32D2D;
+    --red-l:  #FCEBEB;
+    --gray:   #5F5E5A;
+    --gray-l: #F1EFE8;
+    --text:   #1a1a18;
+    --muted:  #5F5E5A;
+    --border: rgba(0,0,0,0.10);
+    --card:   #ffffff;
+    --bg:     #F7F6F1;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* ─── Header ─── */
+  .site-header {
+    background: var(--blue);
+    color: #fff;
+    padding: 24px 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(255,255,255,0.04) 18px,
+      rgba(255,255,255,0.04) 36px
+    );
+    pointer-events: none;
+  }
+  .site-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    position: relative;
+  }
+  .site-header p {
+    font-size: 13px;
+    opacity: 0.75;
+    margin-top: 4px;
+    position: relative;
+  }
+
+  /* ─── Progress bar ─── */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.2);
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  /* ─── Container ─── */
+  .container { max-width: 680px; margin: 0 auto; padding: 24px 16px 0; }
+
+  /* ─── Identitas card ─── */
+  .id-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .id-card h2 {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 5px; font-weight: 500; }
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--text);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  input[type="text"]:focus, select:focus { border-color: var(--blue); background: #fff; }
+
+  /* ─── Section header ─── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 24px 0 12px;
+  }
+  .sec-head .pill {
+    background: var(--blue);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .sec-head h3 { font-size: 15px; font-weight: 600; }
+
+  /* ─── Teks wawancara ─── */
+  .reading-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  .reading-card .rt { font-size: 13px; font-weight: 600; color: var(--blue); margin-bottom: 10px; }
+  .reading-card .dialog-line { margin-bottom: 10px; }
+  .reading-card .speaker { font-weight: 600; }
+
+  /* ─── Question card ─── */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .q-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--blue-l);
+    color: var(--blue-d);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .bloom-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+  .c1 { background: #E6F1FB; color: #0C447C; }
+  .c2 { background: #EAF3DE; color: #27500A; }
+  .c3 { background: #FAEEDA; color: #633806; }
+  .c4 { background: #FAECE7; color: #712B13; }
+  .c5 { background: #FBEAF0; color: #72243E; }
+  .c6 { background: #EEEDFE; color: #3C3489; }
+
+  .q-text { font-size: 14px; line-height: 1.6; color: var(--text); }
+
+  /* ─── Options ─── */
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 12px; }
+  @media (max-width: 480px) { .options { grid-template-columns: 1fr; } .id-card { grid-template-columns: 1fr; } }
+
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--bg);
+    user-select: none;
+  }
+  .opt:hover { border-color: var(--blue); background: var(--blue-l); }
+  .opt.selected { border-color: var(--blue); background: var(--blue-l); color: var(--blue-d); }
+  .opt.correct  { border-color: var(--green); background: var(--green-l); color: var(--green); pointer-events: none; }
+  .opt.wrong    { border-color: var(--red);   background: var(--red-l);   color: var(--red);   pointer-events: none; }
+  .opt.locked   { pointer-events: none; }
+  .opt-lbl { font-weight: 700; min-width: 14px; flex-shrink: 0; }
+
+  /* ─── Uraian ─── */
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    margin-top: 12px;
+    padding: 10px 13px;
+    font-size: 13px;
+    font-family: inherit;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+    line-height: 1.7;
+  }
+  textarea:focus { border-color: var(--blue); background: #fff; }
+
+  /* ─── Submit button ─── */
+  .btn-wrap { text-align: center; margin-top: 28px; }
+  .btn-submit {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.2px;
+  }
+  .btn-submit:hover { background: var(--blue-d); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
+
+  /* ─── Hasil / Score panel ─── */
+  .hasil-panel {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin-top: 28px;
+    text-align: center;
+    animation: fadeUp 0.4s ease;
+  }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+
+  .hasil-icon { font-size: 48px; margin-bottom: 8px; }
+  .hasil-nama { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .hasil-kelas { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+  .score-ring-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+  .score-ring {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    border: 6px solid;
+    transition: border-color 0.3s;
+  }
+  .score-ring small { font-size: 12px; font-weight: 500; margin-top: -4px; }
+
+  .kepahaman-badge {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px 22px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .detail-box {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+    border: 1px solid var(--border);
+  }
+  .detail-box .d-val { font-size: 20px; font-weight: 700; }
+  .detail-box .d-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .rekomendasi {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: left;
+    border: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .rekomendasi strong { display: block; margin-bottom: 4px; font-size: 13px; }
+
+  .bloom-summary {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .bs-item {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .bs-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .btn-reset {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 24px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-reset:hover { background: #e8e6e0; }
+
+  .saved-note {
+    font-size: 12px;
+    color: var(--green);
+    margin-top: 10px;
+    display: none;
+  }
+
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.8);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .loading-overlay.active { display: flex; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid var(--blue-l);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-overlay p { font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <p>Menyimpan hasil ke Google Sheets...</p>
+</div>
+
+<!-- Header -->
+<div class="site-header">
+  <h1>Asesmen Kognitif — Wawancara</h1>
+  <p>Bahasa Indonesia &nbsp;·&nbsp; Kelas 4 SD &nbsp;·&nbsp; 10 Soal &nbsp;·&nbsp; 45 Menit</p>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0 / 10 soal dijawab</div>
+</div>
+
+<div class="container">
+
+  <!-- Identitas Siswa -->
+  <div class="id-card">
+    <h2>Identitas Siswa</h2>
+    <div>
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" placeholder="Tulis nama lengkapmu...">
+    </div>
+    <div>
+      <label for="kelas">Kelas</label>
+      <select id="kelas">
+        <option value="">— Pilih Kelas —</option>
+        <option>4A</option><option>4B</option><option>4C</option>
+        <option>4D</option><option>4E</option><option>4F</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Teks Wawancara -->
+  <div class="sec-head">
+    <span class="pill">Teks</span>
+    <h3>Bacalah teks wawancara berikut dengan seksama</h3>
+  </div>
+
+  <div class="reading-card">
+    <div class="rt">Wawancara: Menjaga Kebersihan Lingkungan Sekolah</div>
+    <div class="dialog-line"><span class="speaker">Pewawancara:</span> "Selamat pagi, Pak Budi. Bolehkah saya mewawancarai Bapak sebentar?"</div>
+    <div class="dialog-line"><span class="speaker">Pak Budi:</span> "Tentu boleh, silakan."</div>
+    <div class="dialog-line"><span class="speaker">Pewawancara:</span> "Apa tugas Bapak di sekolah ini?"</div>
+    <div class="dialog-line"><span class="speaker">Pak Budi:</span> "Saya bertugas sebagai penjaga kebersihan sekolah. Setiap hari saya menyapu halaman, mengepel lantai kelas, dan membuang sampah ke tempat pembuangan."</div>
+    <div class="dialog-line"><span class="speaker">Pewawancara:</span> "Mengapa kebersihan sekolah itu penting, Pak?"</div>
+    <div class="dialog-line"><span class="speaker">Pak Budi:</span> "Sekolah yang bersih membuat siswa nyaman belajar. Selain itu, lingkungan bersih juga mencegah penyakit. Saya berharap siswa juga ikut menjaga kebersihan dengan tidak membuang sampah sembarangan."</div>
+    <div class="dialog-line"><span class="speaker">Pewawancara:</span> "Terima kasih, Pak Budi, atas penjelasannya."</div>
+    <div class="dialog-line"><span class="speaker">Pak Budi:</span> "Sama-sama. Semoga bermanfaat."</div>
+  </div>
+
+  <!-- Soal Pilihan Ganda -->
+  <div class="sec-head">
+    <span class="pill">PG</span>
+    <h3>Pilihan Ganda — Soal No. 1–7</h3>
+  </div>
+  <div id="pg-container"></div>
+
+  <!-- Soal Uraian -->
+  <div class="sec-head">
+    <span class="pill">Uraian</span>
+    <h3>Uraian — Soal No. 8–10</h3>
+  </div>
+  <div id="uraian-container"></div>
+
+  <!-- Submit -->
+  <div class="btn-wrap">
+    <button class="btn-submit" id="btnSubmit" onclick="submitAsesmen()">
+      Kirim Jawaban &amp; Lihat Hasil
+    </button>
+    <div style="font-size:12px; color:var(--muted); margin-top:10px;">
+      Pastikan semua soal pilihan ganda telah dijawab sebelum mengirim.
+    </div>
+  </div>
+
+  <!-- Panel Hasil -->
+  <div class="hasil-panel" id="hasilPanel">
+    <div class="hasil-icon" id="hasilIcon">📊</div>
+    <div class="hasil-nama" id="hasilNama"></div>
+    <div class="hasil-kelas" id="hasilKelas"></div>
+
+    <div class="score-ring-wrap">
+      <div class="score-ring" id="scoreRing">
+        <span id="scoreNum">0</span>
+        <small>dari 70</small>
+      </div>
+    </div>
+
+    <div class="kepahaman-badge" id="kepahamanBadge"></div>
+
+    <div class="detail-grid">
+      <div class="detail-box">
+        <div class="d-val" id="dPersen">0%</div>
+        <div class="d-lbl">Persentase</div>
+      </div>
+      <div class="detail-box">
+        <div class="d-val" id="dBenar">0</div>
+        <div class="d-lbl">Soal Benar</div>
+      </div>
+      <div class="detail-box">
+        <div class="d-val" id="dSalah">0</div>
+        <div class="d-lbl">Soal Salah</div>
+      </div>
+    </div>
+
+    <div class="bloom-summary" id="bloomSummary"></div>
+
+    <div class="rekomendasi" id="rekomendasiBox"></div>
+
+    <div style="font-size:12px; color:var(--muted); margin-bottom:16px;">
+      Soal Uraian (No. 8–10 | 30 poin) akan dinilai oleh guru secara terpisah.
+    </div>
+
+    <div class="saved-note" id="savedNote">✔ Jawaban berhasil disimpan ke Google Sheets</div>
+
+    <button class="btn-reset" onclick="resetAsesmen()">Ulangi Asesmen</button>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+//  DATA SOAL
+// ============================================================
+const pgData = [
+  {
+    num: 1, level: "C1", levelName: "Mengingat",
+    text: "Siapa yang diwawancarai dalam teks di atas?",
+    opts: ["Pak Anton", "Pak Budi", "Pak Doni", "Pak Rudi"],
+    answer: 1
+  },
+  {
+    num: 2, level: "C1", levelName: "Mengingat",
+    text: "Apa pekerjaan Pak Budi di sekolah?",
+    opts: ["Guru kelas", "Kepala sekolah", "Penjaga kebersihan", "Penjaga keamanan"],
+    answer: 2
+  },
+  {
+    num: 3, level: "C2", levelName: "Memahami",
+    text: "Mengapa kebersihan sekolah penting menurut Pak Budi?",
+    opts: ["Agar terlihat indah di foto", "Agar siswa nyaman belajar dan mencegah penyakit", "Supaya mendapat penghargaan", "Agar guru senang memeriksa sekolah"],
+    answer: 1
+  },
+  {
+    num: 4, level: "C2", levelName: "Memahami",
+    text: "Apa harapan Pak Budi kepada para siswa?",
+    opts: ["Siswa rajin belajar", "Siswa tidak buang sampah sembarangan", "Siswa membantu mengepel lantai", "Siswa datang lebih awal"],
+    answer: 1
+  },
+  {
+    num: 5, level: "C3", levelName: "Menerapkan",
+    text: "Jika kamu ingin mewawancarai seseorang, kalimat pembuka yang tepat adalah ...",
+    opts: [
+      "\"Ayo kita mulai saja!\"",
+      "\"Kamu harus menjawab pertanyaan saya.\"",
+      "\"Bolehkah saya mewawancarai Bapak/Ibu sebentar?\"",
+      "\"Ceritakan dirimu sekarang juga!\""
+    ],
+    answer: 2
+  },
+  {
+    num: 6, level: "C4", levelName: "Menganalisis",
+    text: "Dalam teks wawancara, kalimat \"Sama-sama. Semoga bermanfaat.\" merupakan bagian ...",
+    opts: ["Pembuka wawancara", "Isi pertanyaan wawancara", "Jawaban narasumber", "Penutup wawancara"],
+    answer: 3
+  },
+  {
+    num: 7, level: "C4", levelName: "Menganalisis",
+    text: "Berikut ini yang BUKAN ciri-ciri teks wawancara yang baik adalah ...",
+    opts: [
+      "Menggunakan kalimat tanya yang jelas",
+      "Pewawancara memotong jawaban narasumber",
+      "Ada kalimat pembuka dan penutup",
+      "Narasumber menjawab dengan lengkap"
+    ],
+    answer: 1
+  }
+];
+
+const uraianData = [
+  {
+    num: 8, level: "C3", levelName: "Menerapkan",
+    text: "Tuliskan 2 (dua) contoh kalimat tanya yang dapat digunakan dalam kegiatan wawancara!"
+  },
+  {
+    num: 9, level: "C5", levelName: "Mengevaluasi",
+    text: "Menurutmu, apakah sikap pewawancara dalam teks sudah baik? Berikan alasanmu minimal 2 kalimat!"
+  },
+  {
+    num: 10, level: "C6", levelName: "Mencipta",
+    text: "Buatlah sebuah daftar pertanyaan wawancara (minimal 3 pertanyaan) kepada seorang pedagang di kantin sekolah tentang makanan sehat!"
+  }
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+let pgAnswers = {}; // { qNum: selectedIndex }
+
+// ============================================================
+//  RENDER
+// ============================================================
+function renderPG() {
+  const c = document.getElementById("pg-container");
+  c.innerHTML = pgData.map(q => `
+    <div class="q-card" id="qcard-${q.num}">
+      <div class="q-meta">
+        <div class="q-num">${q.num}</div>
+        <span class="bloom-badge ${q.level.toLowerCase()}">${q.level} — ${q.levelName}</span>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">
+        ${q.opts.map((o, i) => `
+          <div class="opt" id="opt-${q.num}-${i}" onclick="pilih(${q.num}, ${i})">
+            <span class="opt-lbl">${"ABCD"[i]}.</span>
+            <span>${o}</span>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderUraian() {
+  const c = document.getElementById("uraian-container");
+  c.innerHTML = uraianData.map(q => `
+    <div class="q-card">
+      <div class="q-meta">
+        <div class="q-num">${q.num}</div>
+        <span class="bloom-badge ${q.level.toLowerCase()}">${q.level} — ${q.levelName}</span>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <textarea id="uraian-${q.num}" placeholder="Tulis jawabanmu di sini..." oninput="updateProgress()"></textarea>
+    </div>
+  `).join("");
+}
+
+// ============================================================
+//  PILIH JAWABAN
+// ============================================================
+function pilih(qNum, idx) {
+  if (pgAnswers[qNum] !== undefined) return; // sudah terkunci setelah submit
+  pgAnswers[qNum] = idx;
+
+  // highlight selected
+  pgData.find(q => q.num === qNum).opts.forEach((_, i) => {
+    const el = document.getElementById(`opt-${qNum}-${i}`);
+    el.classList.toggle("selected", i === idx);
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const pgDone  = Object.keys(pgAnswers).length;
+  const uDone   = uraianData.filter(q => (document.getElementById(`uraian-${q.num}`)?.value || "").trim().length > 0).length;
+  const total   = 10;
+  const done    = pgDone + uDone;
+  const pct     = Math.round((done / total) * 100);
+  document.getElementById("progressFill").style.width = pct + "%";
+  document.getElementById("progressLabel").textContent = `${done} / ${total} soal dijawab`;
+}
+
+// ============================================================
+//  SUBMIT
+// ============================================================
+function submitAsesmen() {
+  const nama  = document.getElementById("nama").value.trim();
+  const kelas = document.getElementById("kelas").value;
+
+  if (!nama)  { alert("Harap isi nama lengkap terlebih dahulu."); return; }
+  if (!kelas) { alert("Harap pilih kelas terlebih dahulu."); return; }
+
+  const belumDijawab = pgData.filter(q => pgAnswers[q.num] === undefined);
+  if (belumDijawab.length > 0) {
+    alert(`Masih ada ${belumDijawab.length} soal pilihan ganda yang belum dijawab (No. ${belumDijawab.map(q=>q.num).join(", ")}).`);
+    return;
+  }
+
+  // Hitung skor PG
+  let benar = 0;
+  pgData.forEach(q => { if (pgAnswers[q.num] === q.answer) benar++; });
+  const skorPG = benar * 10;
+
+  // Tampilkan benar/salah
+  pgData.forEach(q => {
+    const sel = pgAnswers[q.num];
+    q.opts.forEach((_, i) => {
+      const el = document.getElementById(`opt-${q.num}-${i}`);
+      el.classList.remove("selected");
+      el.classList.add("locked");
+      if (i === q.answer)           el.classList.add("correct");
+      else if (i === sel && i !== q.answer) el.classList.add("wrong");
+    });
+  });
+
+  // Tampilkan hasil
+  tampilkanHasil(nama, kelas, skorPG, benar);
+
+  // Kirim ke Apps Script
+  document.getElementById("loading").classList.add("active");
+
+  const payload = {
+    nama, kelas, skorPG,
+    jawabanPG: pgData.map(q => `${q.num}. Jawab: ${"ABCD"[pgAnswers[q.num]]} (${pgAnswers[q.num] === q.answer ? "Benar" : "Salah"})`),
+    uraian8: document.getElementById("uraian-8").value,
+    uraian9: document.getElementById("uraian-9").value,
+    uraian10: document.getElementById("uraian-10").value,
+  };
+
+  google.script.run
+    .withSuccessHandler(function(res) {
+      document.getElementById("loading").classList.remove("active");
+      const note = document.getElementById("savedNote");
+      note.style.display = "block";
+    })
+    .withFailureHandler(function(err) {
+      document.getElementById("loading").classList.remove("active");
+      console.log("Gagal simpan:", err);
+    })
+    .submitHasil(payload);
+
+  document.getElementById("btnSubmit").disabled = true;
+  document.getElementById("hasilPanel").style.display = "block";
+  document.getElementById("hasilPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ============================================================
+//  TAMPILKAN HASIL
+// ============================================================
+function tampilkanHasil(nama, kelas, skorPG, benar) {
+  const persen = Math.round((skorPG / 70) * 100);
+  const salah  = 7 - benar;
+
+  document.getElementById("hasilNama").textContent  = nama;
+  document.getElementById("hasilKelas").textContent = "Kelas " + kelas;
+  document.getElementById("scoreNum").textContent   = skorPG;
+  document.getElementById("dPersen").textContent    = persen + "%";
+  document.getElementById("dBenar").textContent     = benar;
+  document.getElementById("dSalah").textContent     = salah;
+
+  // Ring warna & kepahaman
+  const ring   = document.getElementById("scoreRing");
+  const badge  = document.getElementById("kepahamanBadge");
+  const icon   = document.getElementById("hasilIcon");
+  const rek    = document.getElementById("rekomendasiBox");
+
+  let level, ringColor, badgeBg, badgeColor, rekText, emoji;
+  if (persen >= 85) {
+    level="Sangat Paham"; ringColor="#3B6D11"; badgeBg="#EAF3DE"; badgeColor="#27500A";
+    emoji="🌟";
+    rekText="<strong>Sangat Paham</strong>Luar biasa! Kamu memahami materi wawancara dengan sangat baik. Terus tingkatkan dengan berlatih membuat teks wawancara sendiri dan mencoba mewawancarai orang-orang di sekitarmu.";
+  } else if (persen >= 75) {
+    level="Paham"; ringColor="#185FA5"; badgeBg="#E6F1FB"; badgeColor="#0C447C";
+    emoji="👍";
+    rekText="<strong>Paham</strong>Bagus! Kamu sudah memahami materi wawancara. Pelajari kembali bagian ciri-ciri teks wawancara dan struktur wawancara yang baik untuk meningkatkan pemahamanmu.";
+  } else if (persen >= 55) {
+    level="Cukup Paham"; ringColor="#854F0B"; badgeBg="#FAEEDA"; badgeColor="#633806";
+    emoji="📖";
+    rekText="<strong>Cukup Paham</strong>Kamu sudah memahami sebagian materi. Fokus pada bagian yang masih salah, terutama tentang struktur wawancara (pembuka, isi, penutup) dan kalimat tanya yang tepat.";
+  } else if (persen >= 40) {
+    level="Kurang Paham"; ringColor="#D85A30"; badgeBg="#FAECE7"; badgeColor="#712B13";
+    emoji="✏️";
+    rekText="<strong>Kurang Paham</strong>Kamu perlu belajar lebih giat. Baca kembali materi tentang wawancara, perhatikan struktur teks, dan latihan membuat pertanyaan wawancara dengan bimbingan guru.";
+  } else {
+    level="Belum Paham"; ringColor="#A32D2D"; badgeBg="#FCEBEB"; badgeColor="#791F1F";
+    emoji="💪";
+    rekText="<strong>Belum Paham</strong>Jangan menyerah! Minta bantuan guru untuk mempelajari kembali materi wawancara dari awal. Baca teks wawancara pelan-pelan dan diskusikan bersama teman atau orang tua.";
+  }
+
+  ring.style.borderColor    = ringColor;
+  ring.style.color          = ringColor;
+  badge.textContent         = level;
+  badge.style.background    = badgeBg;
+  badge.style.color         = badgeColor;
+  icon.textContent          = emoji;
+  rek.innerHTML             = rekText;
+
+  // Bloom summary per soal
+  const bloomMap = {};
+  pgData.forEach(q => {
+    if (!bloomMap[q.level]) bloomMap[q.level] = { name: q.levelName, total: 0, benar: 0 };
+    bloomMap[q.level].total++;
+    if (pgAnswers[q.num] === q.answer) bloomMap[q.level].benar++;
+  });
+  const bloomColors = { C1:"#185FA5", C2:"#3B6D11", C3:"#854F0B", C4:"#D85A30", C5:"#993556", C6:"#534AB7" };
+  const bloomBgs    = { C1:"#E6F1FB", C2:"#EAF3DE", C3:"#FAEEDA", C4:"#FAECE7", C5:"#FBEAF0", C6:"#EEEDFE" };
+
+  document.getElementById("bloomSummary").innerHTML = Object.entries(bloomMap).map(([lvl, d]) => `
+    <div class="bs-item" style="background:${bloomBgs[lvl]};color:${bloomColors[lvl]}">
+      <div class="bs-dot" style="background:${bloomColors[lvl]}"></div>
+      ${lvl} ${d.name}: ${d.benar}/${d.total}
+    </div>
+  `).join("");
+}
+
+// ============================================================
+//  RESET
+// ============================================================
+function resetAsesmen() {
+  pgAnswers = {};
+  document.getElementById("nama").value  = "";
+  document.getElementById("kelas").value = "";
+  document.getElementById("hasilPanel").style.display = "none";
+  document.getElementById("savedNote").style.display  = "none";
+  document.getElementById("btnSubmit").disabled       = false;
+  document.getElementById("progressFill").style.width = "0%";
+  document.getElementById("progressLabel").textContent = "0 / 10 soal dijawab";
+  renderPG();
+  renderUraian();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+renderPG();
+renderUraian();
+</script>
+</body>
+</html>
